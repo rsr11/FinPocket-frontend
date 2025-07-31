@@ -1,16 +1,12 @@
 import React from 'react'
 import { supabase } from '../supabase'
 import { NavLink } from 'react-router-dom'
+import { GoogleLogin } from '../utils/Auth.util'
 
 const Login = () => {
 
 
-        const handleLogin= async ()=>{
-           const {error} = await supabase.auth.signInWithOAuth({
-            provider: 'google',
-           })
-           if(error) console.error("Google login error :"+ error.message);
-        }
+       
 
 
   return (
@@ -28,7 +24,7 @@ const Login = () => {
 
         <section className='flex gap-4' >
         <button type='submit' className='w-[50%] text-sm sm:text-base cursor-pointer font-semibold py-2 rounded-md m-auto bg-[#635BFF] text-white  hover:text-black hover:border-2 hover:border-[#635BFF] hover:bg-white active:bg-[#635BFF] active:text-white' >LOGIN</button> 
-        <button onClick={handleLogin} className='py-2 text-sm sm:text-base rounded-md m-auto border-2 w-[50%] font-semibold cursor-pointer border-blue-500 text-black hover:bg-blue-500 hover:text-white active:border-blue-500 active:text-black' > Google </button>
+        <button onClick={GoogleLogin} className='py-2 text-sm sm:text-base rounded-md m-auto border-2 w-[50%] font-semibold cursor-pointer border-blue-500 text-black hover:bg-blue-500 hover:text-white active:border-blue-500 active:text-black' > Google </button>
             </section>   
          <p className='text-slate-500 text-sm sm:text-base mt-2' >Don't have account yet? <NavLink to={`/signup`} className='hover:underline text-blue-500 cursor-pointer' >Sign-up </NavLink></p>
 

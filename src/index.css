@@ -2,3 +2,16 @@
 
 
 /* loginin - #635BFF */
+
+@layer utilities {
+  input::-webkit-outer-spin-button,
+  input::-webkit-inner-spin-button {
+    @apply appearance-none;
+    margin: 0;
+  }
+
+  input[type="number"] {
+    @apply appearance-none;
+    -moz-appearance: textfield; /* Firefox */
+  }
+}

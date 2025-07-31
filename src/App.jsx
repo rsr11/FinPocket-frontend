@@ -8,10 +8,10 @@ import { supabase } from './supabase'
 
 function App() {
 
-  const [user, setUser] = useState(null);
+  const [user, setUser] = useState(null);                          
 
   const userSession = async()=>{
-    const {data,error} = await supabase.auth.getSession()
+    const {data,error} = await supabase.auth.getSession()     
 
     if(data?.session){
       setUser(data.session.user)
@@ -31,9 +31,14 @@ function App() {
     <>
     <BrowserRouter>
       <Routes>
+
+
+
         {
           // user ? <Route path='/' element={<Dashboard/>}  /> :  <Route path='/login' element={<Login user={user} />} />
         }
+
+
         <Route path='/' element={ user ? <Dashboard user={user} /> : <Login /> }  />
         <Route path='/login' element={<Login/>} />
         <Route path='/signup' element={<Signup/>} />
@@ -43,7 +48,10 @@ function App() {
   )
 }
 
+
 export default App
+
+
 
 
 // personal-finance-project - project name
