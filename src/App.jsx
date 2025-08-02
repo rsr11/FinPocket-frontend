@@ -8,9 +8,12 @@ import { supabase } from './supabase'
 
 function App() {
 
-  const [user, setUser] = useState(null);                          
+  const [user, setUser] = useState(null); 
+  
+  const userLogined = localStorage.getItem("UserLogined");
 
   const userSession = async()=>{
+
     const {data,error} = await supabase.auth.getSession()     
 
     if(data?.session){
@@ -39,7 +42,7 @@ function App() {
         }
 
 
-        <Route path='/' element={ user ? <Dashboard user={user} /> : <Login /> }  />
+        <Route path='/' element={ userLogined ? <Dashboard  /> : <Login /> }  />
         <Route path='/login' element={<Login/>} />
         <Route path='/signup' element={<Signup/>} />
       </Routes>

@@ -8,8 +8,8 @@ import OtpChecker from '../components/OtpChecker';
 
 const Signup = () => {
 
-    const [PassErrorMssg, setPassErrorMssg] = useState("password should be min 8 character and max 20 character with one special character in it.");
-    const [ConformPassError, setConformPassError] = useState("");
+    const PassErrorMssg ="password should be min 8 character and max 20 character with one special character in it.";
+    // const [ConformPassError, setConformPassError] = useState("");
     const [otp, setOtp] = useState([]);
     const emailRef = useRef();
     const nameRef = useRef();
@@ -79,7 +79,7 @@ const Signup = () => {
   return (
     <>
       
-      <OtpChecker visibility={optVisivility}  />
+      <OtpChecker visibility={optVisivility} otp={otp} />
     <div className={` ${!optVisivility ?"flex" : "hidden" } justify-center flex-col items-center h-[100vh]`} >
 
       <h1 className='absolute sm:left-24 left-2 text-xl sm:text-2xl top-1 sm:top-8 p-4' >FinPocket 🪙 </h1>
@@ -95,7 +95,7 @@ const Signup = () => {
         <input type="password" ref={passwordRef}  required placeholder='Password' minLength={8} maxLength={20} className='border text-sm sm:text-base rounded-md px-2 py-1 ' />  
         <p className='mb-5 text-slate-600 text-xs sm:text-sm ' >{PassErrorMssg}</p> 
         <input type="password" ref={conformPassRef}  required placeholder='Conform Password' minLength={8} maxLength={20} className='border text-sm sm:text-base rounded-md px-2 py-1 ' />
-        <p className='mb-5'>{ConformPassError}</p>
+        <p className='mb-5'>{``}</p>
 
         <section className='flex items-center gap-4' >
         <button type='submit' className='w-[50%] text-sm sm:text-base cursor-pointer font-semibold py-2 rounded-md m-auto bg-[#635BFF] text-white  hover:text-black hover:border-2 hover:border-[#635BFF] hover:bg-white active:bg-[#635BFF] active:text-white  ' >SIGN UP</button>

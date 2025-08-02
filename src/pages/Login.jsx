@@ -1,5 +1,5 @@
 import React from 'react'
-import { supabase } from '../supabase'
+// import { supabase } from '../supabase'
 import { NavLink } from 'react-router-dom'
 import { GoogleLogin } from '../utils/Auth.util'
 
