@@ -1,14 +1,19 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, {useRef, useState } from 'react'
 import { NavLink } from 'react-router-dom';
-import { OtpGenrator } from '../utils/Auth.util';
+// import { OtpGenrator } from '../utils/Auth.util';
 import { GoogleLogin } from '../utils/Auth.util';
 import OtpChecker from '../components/OtpChecker';
+import { useDispatch } from 'react-redux';
+import { UpdateLoggedIn } from '../features/Auth/Auth.slice';
+import { getOtp } from '../apiHandler/signup.api';
+import Header from '../components/Header';
 
 
 
 const Signup = () => {
 
     const PassErrorMssg ="password should be min 8 character and max 20 character with one special character in it.";
+    const dispatch = useDispatch();
     // const [ConformPassError, setConformPassError] = useState("");
     const [otp, setOtp] = useState([]);
     const emailRef = useRef();
@@ -30,7 +35,7 @@ const Signup = () => {
        }
 
 
-        const formCheck = (e,name,email,password,conformPassword)=>{ 
+        const formCheck = async (e,name,email,password,conformPassword)=>{ 
             e.preventDefault();   
               
              console.log("entered");
@@ -61,28 +66,57 @@ const Signup = () => {
                       return;
                     }
 
-                    setOtpvisibility(true);
+                    dispatch(UpdateLoggedIn({email:email,password:password,name:name}));
+
+                    try {
+                      // const data = await fetch(`http://localhost:4040/finPocket/api/auth/sendOtp/${email}`);
+                      // const otp = await data.json();
+                      // console.log(data);
+
+                      const res = await getOtp(email);
+
+                      if(res.status !== 200){
+                          alert(res.error);
+                          return;
+                      };
+                      console.log("the res status is :" + res.status);
+                      console.log("the otp we get :"+ res.otp);
+                      
+                      
+                      setOtp(res.otp);
+                      setOtpvisibility(true);
+                      alert(`otp is sended to ${email}!`)
+                      
+                    } catch (error) {
+                      console.log(error);
+                      
+                    }
+
+
+
 
         };
+ 
 
 
 
-
-          useEffect(()=>{
-           const nums =  OtpGenrator();
-            setOtp(nums);
+          // useEffect(()=>{
+          //  const nums =  OtpGenrator();
+          //   setOtp(nums);
                
-          },[])
+          // },[])
 
-  console.log("da");
+  console.log("da");  
   
   return (
     <>
-      
-      <OtpChecker visibility={optVisivility} otp={otp} />
-    <div className={` ${!optVisivility ?"flex" : "hidden" } justify-center flex-col items-center h-[100vh]`} >
+      <Header/>
+      { optVisivility ? (  <OtpChecker visibility={optVisivility} otp={otp} email={emailRef} /> ) : (
+     
+    <div className={` ${!optVisivility ?"flex" : "hidden" } justify-center flex-col items-center h-[70vh]`} >
 
-      <h1 className='absolute sm:left-24 left-2 text-xl sm:text-2xl top-1 sm:top-8 p-4' >FinPocket 🪙 </h1>
+      {/* <h1 className='absolute sm:left-24 left-2 text-xl sm:text-2xl top-1 sm:top-8 p-4' >FinPocket 🪙 </h1> */}
+      
 
        {/* <h1>{otp[2]}</h1> */}
        <h1 className='text-2xl sm:text-3xl sm:mb-2 font-bold sm:mt-15' >Sign-Up</h1>
@@ -96,7 +130,7 @@ const Signup = () => {
         <p className='mb-5 text-slate-600 text-xs sm:text-sm ' >{PassErrorMssg}</p> 
         <input type="password" ref={conformPassRef}  required placeholder='Conform Password' minLength={8} maxLength={20} className='border text-sm sm:text-base rounded-md px-2 py-1 ' />
         <p className='mb-5'>{``}</p>
-
+        
         <section className='flex items-center gap-4' >
         <button type='submit' className='w-[50%] text-sm sm:text-base cursor-pointer font-semibold py-2 rounded-md m-auto bg-[#635BFF] text-white  hover:text-black hover:border-2 hover:border-[#635BFF] hover:bg-white active:bg-[#635BFF] active:text-white  ' >SIGN UP</button>
         <span>or</span>
@@ -109,6 +143,7 @@ const Signup = () => {
          
  
     </div>
+    ) }
     </>
   )
 }

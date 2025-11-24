@@ -1,6 +1,7 @@
 import React from 'react'
 // import { supabase } from '../supabase'
 import { NavLink } from 'react-router-dom'
+import Header from '../components/Header'
 import { GoogleLogin } from '../utils/Auth.util'
 
 const Login = () => {
@@ -10,11 +11,12 @@ const Login = () => {
 
 
   return (
-    <div className='flex justify-center flex-col items-center h-[100vh]' >
+    <>
+      <Header/>
+    <div className='flex justify-center flex-col items-center h-[70vh]' >
 
-      <h1 className='absolute sm:left-24 left-2 text-xl sm:text-2xl top-1 sm:top-8 p-4' >FinPocket 🪙 </h1>
+      {/* <h1 className='absolute sm:left-24 left-2 text-xl sm:text-2xl top-1 sm:top-8 p-4' >FinPocket 🪙 </h1> */}
  
-
       
        <h1 className='text-2xl sm:text-3xl sm:mb-2 font-semibold' >Login</h1>
        <form className='flex flex-col w-[80vw] lg:w-[30vw] md:w-[60vw] sm:w-[30vw] rounded-md shadow-2xl  pt-20 p-5' >
@@ -33,6 +35,7 @@ const Login = () => {
          
  
     </div>
+    </>
   )
 }
 

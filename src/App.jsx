@@ -3,32 +3,38 @@ import './App.css'
 import Dashboard from './pages/Dashboard'
 import Login from './pages/Login'
 import Signup from './pages/Signup'
-import { useEffect, useState } from 'react'
-import { supabase } from './supabase'
+// import { useEffect, useState } from 'react'
+// import { supabase } from './supabase'
+import { useSelector } from 'react-redux'
 
 function App() {
 
-  const [user, setUser] = useState(null); 
+  // const [user, setUser] = useState(null); 
   
   const userLogined = localStorage.getItem("UserLogined");
 
-  const userSession = async()=>{
+  const isLoggedIn = useSelector(state => state.User.isLoggedIn)
 
-    const {data,error} = await supabase.auth.getSession()     
+  console.log("the statue : "+isLoggedIn);
+  
 
-    if(data?.session){
-      setUser(data.session.user)
-      // console.log(data);
+  // const userSession = async()=>{
+
+  //   const {data,error} = await supabase.auth.getSession()     
+
+  //   if(data?.session){
+  //     setUser(data.session.user)
+  //     // console.log(data);
       
-    }else{
-      setUser(null)
-    }
-  }
+  //   }else{
+  //     setUser(null)
+  //   }
+  // }
 
 
-  useEffect(()=>{
-    userSession();
-  },[])
+  // useEffect(()=>{
+  //   userSession();
+  // },[])
 
   return (
     <>

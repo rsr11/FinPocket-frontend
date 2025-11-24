@@ -1,5 +1,9 @@
 // import React, { useEffect } from 'react'
+import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import { UpdateLoggedIn } from '../features/Auth/Auth.slice';
+import UserDetail from '../components/UserDetail';
+import Header from '../components/Header';
 
 const Dashboard = () => {
 
@@ -9,6 +13,8 @@ const Dashboard = () => {
 
   const navigate = useNavigate();
 
+  const dispatch = useDispatch();
+
 
   // useEffect(()=>{})  
 
@@ -16,6 +22,7 @@ const Dashboard = () => {
       console.log("clicked");
       
         localStorage.removeItem("UserLogined");
+        dispatch(UpdateLoggedIn(false));
         navigate("/login");
         
     }
@@ -23,10 +30,23 @@ const Dashboard = () => {
 
   return (
     <>
-      <h1>Welcome </h1>
+         <Header/>  
+      <main className='blu' >
+
+     
+      {/* <header> */}
+         {/* <h1 className=' sm:left-24 left-2 text-xl sm:text-2xl top-1 sm:top-8 ml-10  p-10' >FinPocket 🪙 </h1> */}
+         <UserDetail/>
+
+      {/* </header> */}
+
+      <h1>Welcome {} </h1>
 
     <button onClick={LogOut} className='border-2 cursor-pointer p-2 m-10' >Sign out</button>
 
+   {/* <UserDetail/> */}
+
+ </main>
     </>
   )
 }

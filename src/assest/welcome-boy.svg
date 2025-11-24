@@ -1,0 +1,39 @@
+<svg width="232" height="226" viewBox="0 0 232 226" fill="none" xmlns="http://www.w3.org/2000/svg">
+<mask id="mask0_93_72" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="55" y="0" width="170" height="170">
+<circle cx="140" cy="85" r="85" fill="#E6A817"/>
+</mask>
+<g mask="url(#mask0_93_72)">
+<g filter="url(#filter0_d_93_72)">
+<circle cx="140" cy="85" r="76.6735" fill="#EEFF00"/>
+<circle cx="140" cy="85" r="74.6735" stroke="#E6A817" stroke-opacity="0.82" stroke-width="4"/>
+</g>
+<path d="M176.644 105.899C155.5 137.5 109.5 133.5 91.297 104.5" stroke="black" stroke-width="6"/>
+<ellipse cx="182.327" cy="91.5918" rx="6.59184" ry="6.2449" fill="#F819F0"/>
+<ellipse cx="85.1836" cy="91.5918" rx="6.59184" ry="6.2449" fill="#F819F0"/>
+</g>
+<ellipse cx="107" cy="63.5" rx="9" ry="15.5" fill="black"/>
+<ellipse cx="105.5" cy="58" rx="1.5" ry="2" fill="white"/>
+<ellipse cx="157" cy="63.5" rx="9" ry="15.5" fill="black"/>
+<ellipse cx="155.5" cy="58" rx="1.5" ry="2" fill="white"/>
+<line x1="120.425" y1="154.721" x2="108.425" y2="211.721" stroke="#EEFF00" stroke-width="7"/>
+<ellipse cx="106" cy="217" rx="11" ry="9" fill="#EEFF00"/>
+<line x1="162.474" y1="153.573" x2="169.474" y2="210.573" stroke="#EEFF00" stroke-width="7"/>
+<ellipse cx="166" cy="217" rx="11" ry="9" fill="#EEFF00"/>
+<line x1="208.466" y1="83.5163" x2="220.466" y2="169.516" stroke="#EEFF00" stroke-width="7"/>
+<ellipse cx="221" cy="167" rx="11" ry="9" fill="#EEFF00"/>
+<line x1="70.654" y1="94.5974" x2="8.654" y2="38.5974" stroke="#EEFF00" stroke-width="7"/>
+<ellipse cx="11" cy="39" rx="11" ry="9" fill="#EEFF00"/>
+<defs>
+<filter id="filter0_d_93_72" x="63.3265" y="8.32654" width="153.347" height="153.947" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+<feFlood flood-opacity="0" result="BackgroundImageFix"/>
+<feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+<feMorphology radius="10" operator="erode" in="SourceAlpha" result="effect1_dropShadow_93_72"/>
+<feOffset dy="4"/>
+<feGaussianBlur stdDeviation="3.3"/>
+<feComposite in2="hardAlpha" operator="out"/>
+<feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0"/>
+<feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_93_72"/>
+<feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_93_72" result="shape"/>
+</filter>
+</defs>
+</svg>

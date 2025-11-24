@@ -2,10 +2,19 @@ import { supabase } from "../supabase";
 
 
 export const GoogleLogin= async ()=>{
-           const {error} = await supabase.auth.signInWithOAuth({
+
+         try {
+            
+             const {error} = await supabase.auth.signInWithOAuth({
             provider: 'google',
            })
            if(error) console.error("Google login error :"+ error.message);
+
+         } catch (error) {
+             console.log(error);
+             
+         }
+           
         }
 
 
