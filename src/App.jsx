@@ -6,6 +6,8 @@ import Signup from './pages/Signup'
 // import { useEffect, useState } from 'react'
 // import { supabase } from './supabase'
 import { useSelector } from 'react-redux'
+import FinPocketDashboard from './pages/FinPocketDashboard'
+import UserForm from './components/UserForm'
 
 function App() {
 
@@ -48,7 +50,7 @@ function App() {
         }
 
 
-        <Route path='/' element={ userLogined ? <Dashboard  /> : <Login /> }  />
+        <Route path='/' element={ !userLogined ? <FinPocketDashboard  /> : <Dashboard/> }  />
         <Route path='/login' element={<Login/>} />
         <Route path='/signup' element={<Signup/>} />
       </Routes>

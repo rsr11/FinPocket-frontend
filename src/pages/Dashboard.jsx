@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { UpdateLoggedIn } from '../features/Auth/Auth.slice';
 import UserDetail from '../components/UserDetail';
 import Header from '../components/Header';
+import UserForm from '../components/UserForm';
 
 const Dashboard = () => {
 
@@ -33,14 +34,14 @@ const Dashboard = () => {
          <Header/>  
       <main className='blu' >
 
+      <h1>Welcome {} </h1>
      
       {/* <header> */}
          {/* <h1 className=' sm:left-24 left-2 text-xl sm:text-2xl top-1 sm:top-8 ml-10  p-10' >FinPocket 🪙 </h1> */}
-         <UserDetail/>
+         <UserForm/>
 
       {/* </header> */}
 
-      <h1>Welcome {} </h1>
 
     <button onClick={LogOut} className='border-2 cursor-pointer p-2 m-10' >Sign out</button>
 
