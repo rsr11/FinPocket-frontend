@@ -5,7 +5,7 @@ import Login from './pages/Login'
 import Signup from './pages/Signup'
 // import { useEffect, useState } from 'react'
 // import { supabase } from './supabase'
-import { useSelector } from 'react-redux'
+// import { useSelector } from 'react-redux'
 import FinPocketDashboard from './pages/FinPocketDashboard'
 import UserForm from './components/UserForm'
 
@@ -15,9 +15,9 @@ function App() {
   
   const userLogined = localStorage.getItem("UserLogined");
 
-  const isLoggedIn = useSelector(state => state.User.isLoggedIn)
+  // const isLoggedIn = useSelector(state => state.User.isLoggedIn)
 
-  console.log("the statue : "+isLoggedIn);
+  // console.log("the statue : "+isLoggedIn);
   
 
   // const userSession = async()=>{
@@ -50,7 +50,7 @@ function App() {
         }
 
 
-        <Route path='/' element={ !userLogined ? <Signup    /> : <Dashboard/> }  />
+        <Route path='/' element={ userLogined ? <Dashboard/> : <Login/> }  />
         <Route path='/login' element={<Login/>} />
         <Route path='/signup' element={<Signup/>} />
       </Routes>
