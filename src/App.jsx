@@ -50,7 +50,7 @@ function App() {
         }
 
 
-        <Route path='/' element={ !userLogined ? <FinPocketDashboard  /> : <Dashboard/> }  />
+        <Route path='/' element={ !userLogined ? <Signup    /> : <Dashboard/> }  />
         <Route path='/login' element={<Login/>} />
         <Route path='/signup' element={<Signup/>} />
       </Routes>

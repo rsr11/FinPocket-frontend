@@ -38,7 +38,7 @@ const Dashboard = () => {
      
       {/* <header> */}
          {/* <h1 className=' sm:left-24 left-2 text-xl sm:text-2xl top-1 sm:top-8 ml-10  p-10' >FinPocket 🪙 </h1> */}
-         <UserForm/>
+        
 
       {/* </header> */}
 
