@@ -2,9 +2,9 @@
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { UpdateLoggedIn } from '../features/Auth/Auth.slice';
-import UserDetail from '../components/UserDetail';
+// import UserDetail from '../components/UserDetail';
 import Header from '../components/Header';
-import UserForm from '../components/UserForm';
+// import UserForm from '../components/UserForm';
 import axios from 'axios';
 import { toast } from 'react-toastify';
 
@@ -46,10 +46,10 @@ const Dashboard = () => {
 
   return (
     <>
-         <Header/>  
+         {/* <Header/>   */}
       <main className='blu' >
 
-      <h1>Welcome {userName} </h1>
+      <h1>Welcome back {userName} </h1>
      
       {/* <header> */}
          {/* <h1 className=' sm:left-24 left-2 text-xl sm:text-2xl top-1 sm:top-8 ml-10  p-10' >FinPocket 🪙 </h1> */}

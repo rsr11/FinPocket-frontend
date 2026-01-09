@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { PieChart, Pie, Cell, BarChart, Bar, LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Legend } from 'recharts';
 import { Home, TrendingUp, History, Settings, Bell, Plus, DollarSign, Target, Calendar, CreditCard, ShoppingCart, Car, Utensils, Smartphone, Heart, Menu, X, User, LogOut } from 'lucide-react';
 import { NavLink } from 'react-router-dom';
-import UserForm from '../components/UserForm';
+// import UserForm from '../components/UserForm';
 
 const FinPocketDashboard = () => {
   const [activeTab, setActiveTab] = useState('dashboard');

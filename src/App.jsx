@@ -7,7 +7,8 @@ import Signup from './pages/Signup'
 // import { supabase } from './supabase'
 // import { useSelector } from 'react-redux'
 import FinPocketDashboard from './pages/FinPocketDashboard'
-import UserForm from './components/UserForm'
+// import UserForm from './components/UserForm'
+import DashboardLayout from './Layout/DashboardLayout'
 
 function App() {
 
@@ -42,17 +43,18 @@ function App() {
     <>
     <BrowserRouter>
       <Routes>
-
-
-
         {
           // user ? <Route path='/' element={<Dashboard/>}  /> :  <Route path='/login' element={<Login user={user} />} />
         }
-
-
-        <Route path='/' element={ userLogined ? <Dashboard/> : <Login/> }  />
-        <Route path='/login' element={<Login/>} />
+        {/* <Route index element={ userLogined ? <Dashboard/> : <Login/> } /> */}
+        <Route path='/' element={ <DashboardLayout/> }>
+        <Route index element={ <Dashboard/> } />
+        <Route path='findash' element={<FinPocketDashboard/>} />
+        </Route>
         <Route path='/signup' element={<Signup/>} />
+        <Route path='/login' element={<Login/>} />
+
+
       </Routes>
     </BrowserRouter>
     </>
