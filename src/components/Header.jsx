@@ -19,7 +19,7 @@ const Header = () => {
 
 
   return (
-    <header className='b-red-400  shadow-lg -2 py-2 flex justify-between items-center px-10' >
+    <header className='bg-white  shadow-lg -2 py-2 sticky top-0 flex justify-between items-center px-10' >
             
             <section className='flex items-center' >
              <span className='text-3xl bg-purple-600 p-1 rounded-sm' >🪙</span>   
