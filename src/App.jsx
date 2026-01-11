@@ -1,15 +1,18 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import './App.css'
-import Dashboard from './pages/Dashboard'
-import Login from './pages/Login'
-import Signup from './pages/Signup'
+import Dashboard from './pages/Dashboard.jsx'
+import Login from './pages/Login.jsx'
+import Signup from './pages/Signup.jsx'
+import Setting from './pages/Setting.jsx'
+import Analysis from './pages/Analysis.jsx'
 // import { useEffect, useState } from 'react'
 // import { supabase } from './supabase'
 // import { useSelector } from 'react-redux'
-import FinPocketDashboard from './pages/FinPocketDashboard'
+import FinPocketDashboard from './pages/FinPocketDashboard.jsx'
 // import UserForm from './components/UserForm'
-import DashboardLayout from './Layout/DashboardLayout'
+import DashboardLayout from './Layout/DashboardLayout.jsx'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
+import History from './pages/History'
 
 function App() {
 
@@ -61,6 +64,9 @@ function App() {
         {/* <Route index element={ userLogined ? <Dashboard/> : <Login/> } /> */}
         <Route path='/' element={ <DashboardLayout/> }>
         <Route index element={ <Dashboard/> } />
+        <Route path='history' element={<History/>} />
+        <Route path='setting' element={<Setting/>} />
+        <Route path='analysis' element={<Analysis/> } />
         </Route>
         <Route path='/findash' element={<FinPocketDashboard/>} />
         <Route path='/signup' element={<Signup/>} />

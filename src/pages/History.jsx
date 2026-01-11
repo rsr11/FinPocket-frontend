@@ -2,9 +2,10 @@ import React from 'react'
 
 const History = () => {
   return (
-    <div>
+    <section className='m-5' >
+      <h1>No History Available!</h1>
       
-    </div>
+    </section>
   )
 }
 

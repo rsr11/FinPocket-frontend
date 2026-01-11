@@ -60,7 +60,7 @@ const Dashboard = () => {
   return (
     <>
          {/* <Header/>   */}
-      <main className='bg-slate-100 text-white' >
+      <main className='text-white' >
       
       <section className='bg-purple-500 m-5 p-4 rounded-md' >
       <h1 className='text-3xl font-bold mb-3' >Welcome back, {`Rajeshwar Singh`} ! </h1>
