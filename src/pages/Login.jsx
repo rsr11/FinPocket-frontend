@@ -60,12 +60,7 @@ const Login = () => {
               dispatch(UpdateLoggedIn({name:data?.data?.name ,email,isLoggedIn:true}));
               setLoading(false);
               toast.success("User LoggedIn!!",{autoClose:1000});
-              localStorage.setItem("UserLogined",true);
-              localStorage.setItem("UserName",data?.data?.name);
-              
-
-              alert();
-              setTimeout(()=>{ navigate("/") },1500);
+              navigate("/")
               
             }
        } catch (error) {
@@ -85,8 +80,9 @@ const Login = () => {
 
 
   return (
-    <>
+    <main>
       <Header/>
+     <section className='' > 
     <h1 className='text-2xl sm:text-3xl sm:mb-1 relative text-center mt-10 font-semibold' >Login</h1>
     <div className='flex justify-center flex-col items-center h-[70vh]' >
 
@@ -113,7 +109,8 @@ const Login = () => {
          
  
     </div>
-    </>
+    </section>
+    </main>
   )
 }
 

@@ -8,6 +8,7 @@ import axios from 'axios';
 const OtpChecker = ({visibility,otp}) => {
 
     const navigate = useNavigate();
+    
 
     console.log("the otp " + otp + " the type "+ typeof(otp) );
     

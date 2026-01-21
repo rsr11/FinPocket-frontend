@@ -2,6 +2,8 @@ import React from 'react'
 // import { FaRegUserCircle } from "react-icons/fa";
 import { FaRegUser } from 'react-icons/fa6';
 import { IoMdNotifications } from 'react-icons/io';
+import { useSelector } from 'react-redux';
+import AuthLayout from '../Layout/AuthLayout';
 
 
 
@@ -17,9 +19,18 @@ const Header = () => {
     // const userLogined = localStorage.getItem("UserLogined");
     // const currentLink = window.location.href.split("/")[3];
 
+  const User = useSelector((state) => state.User);
+  console.log(User);
+  // const User=true;
+  
+  // const name = useSelector(state => state.User.name);
+  // const pofession = useSelector(state => state.User.profession);
+  //   console.log(name);
+    
+
 
   return (
-    <header className='bg-white  shadow-lg -2 py-2 sticky top-0 flex justify-between items-center px-10' >
+    <header className='bg-white  shadow-lg -2 py-2 sticky top-0 z-30 flex justify-between items-center px-10' >
             
             <section className='flex items-center' >
              <span className='text-3xl bg-purple-600 p-1 rounded-sm' >🪙</span>   
@@ -29,19 +40,19 @@ const Header = () => {
              </section>
             </section>
             
-            
+            { User?.isLoggedIn && 
             <section className='flex gap-5 items-center' >
               <IoMdNotifications size={28} />
               <section className='flex bg-slate-200 px-2 py-1 rounded-md items-center gap-2' >
                 <span className='bg-purple-700 p-2 rounded-md' >
                   <FaRegUser size={15} color='white'  />
                 </span>
-                <section >
-                  <h3 className='font-semi-bold' >{`Rajeshwar Singh`}</h3>
-                  <p className='text-xs text-slate-500' >{`Student`}</p>
+                <section className='hidden sm:block' >
+                  <h3 className='font-semi-bold' >{User.name}</h3>
+                  <p className='text-xs text-slate-500' >{User.profession}</p>
                 </section>
               </section>
-            </section>
+            </section>  }
             {/* <p>{currentLink}</p> */}
                                                                                                                             
 

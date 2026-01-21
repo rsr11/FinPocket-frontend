@@ -13,6 +13,8 @@ import AddExpense from '../components/AddExpense';
 
 const Dashboard = () => {
 
+  
+
   // const userName = user?.user_metadata.full_name;
 
   // console.log(user?.user_metadata.full_name);
@@ -67,16 +69,16 @@ const Dashboard = () => {
       <p className='text-lg' >Here is your financial overview for {Months[new Date().getMonth()] + " " + new Date().getFullYear()} </p>
       </section>
 
-      <section className='flex justify-between m-5' >
-        <section className='bg-green-500 w-1/3  p-4 px-10 rounded-md' >
+      <section className='flex flex-col sm:flex-row gap-3 justify-between m-5' >
+        <section className='bg-green-500 w-full sm:w-1/3  p-4 px-10 rounded-md' >
           <p className='text-lg font-light' >Current Balance</p>
           <h2 className='text-2xl font-bold' >{`₹${Math.floor(Math.random() * 10000)}`}</h2>
         </section>
-        <section className='bg-blue-500 w-1/3 mx-5 p-4 px-10 rounded-md'>
+        <section className='bg-blue-500 w-full sm:w-1/3 sm:mx-5 p-4 px-10 rounded-md'>
           <p className='text-lg font-light' >Total Spend</p>
           <h2 className='text-2xl font-bold' >{`₹${Math.floor(Math.random() * 5000)}`}</h2>
         </section>
-        <section className='bg-purple-500 w-1/3 p-4 px-10 rounded-md'>
+        <section className='bg-purple-500 w-full sm:w-1/3 p-4 px-10 rounded-md'>
           <p className='text-lg font-light' >Saved This Month</p>
           <h2 className='text-2xl font-bold' >{`₹${Math.floor(Math.random() * 5000)}`}</h2>
         </section>
