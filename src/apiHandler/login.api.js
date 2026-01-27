@@ -1,11 +1,12 @@
 import axios from "axios";
+import api from "../config/axios.config";
 
 export const LoginApi = async (email,password)=>{
    
      alert(email +" " + password)
     try {
         alert("try block entered!");
-        const data = await axios.post("http://localhost:4040/finPocket/api/auth/LoginUser",{
+        const data = await api.post("/finPocket/api/auth/LoginUser",{
         email:email,
         password:password
      },{

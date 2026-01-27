@@ -3,7 +3,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { UpdateLoggedIn } from '../features/Auth/Auth.slice';
 import { getOtp } from '../apiHandler/signup.api';
-import axios from 'axios';
+// import axios from 'axios';
+import api from '../config/axios.config';
 
 const OtpChecker = ({visibility,otp}) => {
 
@@ -172,7 +173,7 @@ const OtpChecker = ({visibility,otp}) => {
               });
               
               
-              let res = await axios.post("http://localhost:4040/finPocket/api/auth/registerUser",{
+              let res = await api.post("/finPocket/api/auth/registerUser",{
                 name:name,
                 email:gmail,
                 password:password           

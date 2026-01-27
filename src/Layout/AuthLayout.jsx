@@ -1,9 +1,10 @@
-import axios from 'axios';
+// import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import { Navigate } from 'react-router-dom';
 import Loader from '../components/Loader';
 import { useDispatch } from 'react-redux';
 import { UpdateLoggedIn } from '../features/Auth/Auth.slice';
+import api from '../config/axios.config';
 
 const AuthLayout = ({children}) => {
    
@@ -14,12 +15,12 @@ const AuthLayout = ({children}) => {
   useEffect(()=>{
     (async()=>{
       try {
-      const res = await axios.get(`http://localhost:4040/finPocket/api/auth/profile`,{withCredentials:true});
+      const res = await api.get(`/finPocket/api/auth/profile`,{withCredentials:true});
     if(res.status===200){
       setData(res.data);
       console.log(res.data.user);
       
-      dispatch(UpdateLoggedIn({isLoggedIn:true,name:res.data.user.name,profession:res.data.user.Profession,monthlyIncome:res.data.user.MonthlyIncome}));
+      dispatch(UpdateLoggedIn({isLoggedIn:true,name:res.data.user.name,email:res?.data?.user?.email,profession:res.data.user.Profession,monthlyIncome:res.data.user.MonthlyIncome}));
       // dispatch(UpdateLoggedIn({}))
       setLoading(false);
     } 

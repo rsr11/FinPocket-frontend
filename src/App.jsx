@@ -7,7 +7,7 @@ import Setting from './pages/Setting.jsx'
 import Analysis from './pages/Analysis.jsx'
 import FinPocketDashboard from './pages/FinPocketDashboard.jsx'
 import DashboardLayout from './Layout/DashboardLayout.jsx'
-import History from './pages/History'
+  import History from './pages/History'
 import AuthLayout from './Layout/AuthLayout.jsx'
 
 function App() {

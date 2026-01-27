@@ -4,10 +4,11 @@ import { MdLogout, MdOutlineHistory, MdOutlineSettings } from 'react-icons/md'
 import { RiHome3Line } from 'react-icons/ri'
 import { TbDeviceDesktopAnalytics } from 'react-icons/tb'
 import { GoDotFill } from "react-icons/go";
-import axios from 'axios'
+// import axios from 'axios'
 import { toast } from 'react-toastify'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { UpdateLoggedIn } from '../features/Auth/Auth.slice'
+import api from '../config/axios.config'
 // import { isAction } from '@reduxjs/toolkit'
 
 const DashboardLayout = () => {
@@ -15,12 +16,13 @@ const DashboardLayout = () => {
 
     const navigate = useNavigate();
     const dispatch = useDispatch();
+    const User = useSelector((state) => state.User);
     
     // alert(Location);
 
     const logoutFunc = async()=>{
        try {
-        const res = await axios.get(`http://localhost:4040/finPocket/api/auth/logout`,{withCredentials:true});
+        const res = await api.get(`/finPocket/api/auth/logout`,{withCredentials:true});
         
         if(res.status === 200){
            toast("User logged out successfully !!");
@@ -67,7 +69,7 @@ const DashboardLayout = () => {
 
                 <section className='py-4 px-2 sm:px-3 sm:mx-4 border rounded-md mt-5 bg-slate-200 border-slate-400 ' >
                     <h3 className='text-slate-800 font-light font-xs hidden sm:block' >Monthly Income</h3>
-                    <h2 className='text-2xl font-bold hidden sm:block' > ₹ 20,000</h2>
+                    <h2 className='text-2xl font-bold hidden sm:block' > ₹ {User?.monthlyIncome}</h2>
                     <h3 className='flex items-center text-xs text-green-500' > <GoDotFill className='animate-bounce' /> Active</h3>
                 </section>
                 

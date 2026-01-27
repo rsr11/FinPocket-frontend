@@ -8,8 +8,9 @@ import { UpdateLoggedIn } from '../features/Auth/Auth.slice';
 // import { getOtp } from '../apiHandler/signup.api';
 import Header from '../components/Header';
 import Loader from '../components/Loader';
-import axios from 'axios';
+// import axios from 'axios';
 import { toast } from 'react-toastify';
+import api from '../config/axios.config';
 
 
 
@@ -87,7 +88,7 @@ const Signup = () => {
 
 
                     try {
-                    const data = await axios.post("http://localhost:4040/finPocket/api/auth/registration",{
+                    const data = await api.post("/finPocket/api/auth/registration",{
                       name:name,
                       email:email,
                       password:password,

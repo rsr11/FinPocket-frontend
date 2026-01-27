@@ -3,9 +3,10 @@ import Loader from '../components/Loader'
 import { TbDeviceDesktopAnalytics } from 'react-icons/tb';
 import { Cell, Line, LineChart, Pie, PieChart, ResponsiveContainer, Tooltip, XAxis, YAxis } from 'recharts';
 import { useQuery } from '@tanstack/react-query';
-import axios from 'axios';
+// import axios from 'axios';
 // import { X } from 'lucide-react';
 import { RechartsDevtools } from '@recharts/devtools';
+import api from '../config/axios.config';
 
 const Analysis = () => {
 
@@ -15,7 +16,7 @@ const Analysis = () => {
   const getAnalysisData = async ()=>{
 
     try {
-      const data = await axios.get("http://localhost:4040/finPocket/api/analytics/analyticSummary",
+      const data = await api.get("/finPocket/api/analytics/analyticSummary",
                  { headers:{"Content-Type":"application/json"},
                    withCredentials:true });
             return data?.data;  
@@ -28,7 +29,7 @@ const Analysis = () => {
 
   const getLast10DaysSpending = async ()=>{       
       try {
-             const data = await axios.get("http://localhost:4040/finPocket/api/analytics/last-10-day-data",
+             const data = await api.get("/finPocket/api/analytics/last-10-day-data",
               {withCredentials:true});             
               // console.log(data);
               

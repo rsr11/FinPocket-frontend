@@ -1,10 +1,11 @@
-import axios from "axios";
+// import axios from "axios";
+import api from "../config/axios.config";
 
 
 export const getOtp = async (gmail)=>{
 
     try {
-        const data = await axios.get(`http://localhost:4040/finPocket/api/auth/sendOtp/${gmail}`);
+        const data = await api.get(`/finPocket/api/auth/sendOtp/${gmail}`);
         console.log(`data is ${data.data}`);
 
         if(data.status === 200){

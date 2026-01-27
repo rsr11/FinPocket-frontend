@@ -1,7 +1,8 @@
 import { useQuery } from '@tanstack/react-query';
-import axios from 'axios';
+// import axios from 'axios';
 import React from 'react'
 import { IoClose } from 'react-icons/io5'
+import api from '../config/axios.config';
 
 
 
@@ -10,7 +11,7 @@ const AddExpense = ({closeFunc}) => {
    
     const getExpensesData = async ()=>{
 
-        const data = await axios.get("http://localhost:4040/finPocket/api/transaction/categoryListing",
+        const data = await api.get("/finPocket/api/transaction/categoryListing",
                      { headers:{"Content-Type":"application/json"},
                        withCredentials:true
                  });

@@ -1,9 +1,11 @@
 import { FiEdit } from "react-icons/fi";
 import React, { useState } from 'react'
+import { useSelector } from "react-redux";
 
 const Setting = () => {
 
   const [image,setImg] = useState();
+  const User = useSelector((state) => state.User);
 
   
   return (
@@ -15,9 +17,9 @@ const Setting = () => {
           <input type="file" className="hidden" accept="image/*" name="pofilePic" id="pofilePic" />
         </div>
         <div>
-          <p>Name</p>
-          <p>Email</p>
-          <p>Student</p>
+          <p className="font-bold text-xl" >{User?.name}</p>
+          <p>{User?.email}</p>
+          <p className="bg-slate-300 px-2" >{User?.profession}</p>
         </div>
       </section>
       <section>

@@ -1,15 +1,16 @@
 // import React, { useEffect } from 'react'
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { UpdateLoggedIn } from '../features/Auth/Auth.slice';
 // import UserDetail from '../components/UserDetail';
 // import Header from '../components/Header';
 // import UserForm from '../components/UserForm';
-import axios from 'axios';
+// import axios from 'axios';
 import { toast } from 'react-toastify';
 import { IoIosAddCircleOutline } from 'react-icons/io';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import AddExpense from '../components/AddExpense';
+import api from '../config/axios.config';
 
 const Dashboard = () => {
 
@@ -17,13 +18,17 @@ const Dashboard = () => {
 
   // const userName = user?.user_metadata.full_name;
 
+
   // console.log(user?.user_metadata.full_name);
 
   const navigate = useNavigate();
 
   const dispatch = useDispatch();
+  const User = useSelector((state) => state.User);
 
   const [addExpense, setAddExpense] = useState(false);
+  const [data, setData] = useState(null);
+
 
   // const userName = localStorage.getItem("UserName");
 
@@ -33,13 +38,30 @@ const Dashboard = () => {
   const MonthlySpendingPercent = Math.floor(Math.random() * 100);
 
 
+   useEffect(()=>{
+     async function fetchData(){
+      try {
+        const data = await api.get(`/finPocket/api/transaction/getBalanceDetail`,{withCredentials:true});
+        setData(data?.data);
+        
+      } catch (error) {
+        setData(null);
+        console.log(error);  
+      }};
+
+      fetchData();
+
+   },[])
+
+
+
   // useEffect(()=>{})  
 
     const LogOut = async ()=>{
       console.log("clicked");
 
      try {
-      const data = await axios.get("http://localhost:4040/finPocket/api/auth/logout",{
+      const data = await api.get("/finPocket/api/auth/logout",{
         withCredentials:true
       });
 
@@ -65,22 +87,22 @@ const Dashboard = () => {
       <main className='text-white' >
       
       <section className='bg-purple-500 m-5 p-4 rounded-md' >
-      <h1 className='text-3xl font-bold mb-3' >Welcome back, {`Rajeshwar Singh`} ! </h1>
+      <h1 className='text-3xl font-bold mb-3' >Welcome back, {User?.name} ! </h1>
       <p className='text-lg' >Here is your financial overview for {Months[new Date().getMonth()] + " " + new Date().getFullYear()} </p>
       </section>
 
       <section className='flex flex-col sm:flex-row gap-3 justify-between m-5' >
         <section className='bg-green-500 w-full sm:w-1/3  p-4 px-10 rounded-md' >
           <p className='text-lg font-light' >Current Balance</p>
-          <h2 className='text-2xl font-bold' >{`₹${Math.floor(Math.random() * 10000)}`}</h2>
+          <h2 className='text-2xl font-bold' >{`₹${data === null ? "Loading..." : data?.totalAmountRemaining}`}</h2>
         </section>
         <section className='bg-blue-500 w-full sm:w-1/3 sm:mx-5 p-4 px-10 rounded-md'>
           <p className='text-lg font-light' >Total Spend</p>
-          <h2 className='text-2xl font-bold' >{`₹${Math.floor(Math.random() * 5000)}`}</h2>
+          <h2 className='text-2xl font-bold' >{`₹${data === null ? "Loading..." : data?.totalSpend}`}</h2>
         </section>
         <section className='bg-purple-500 w-full sm:w-1/3 p-4 px-10 rounded-md'>
           <p className='text-lg font-light' >Saved This Month</p>
-          <h2 className='text-2xl font-bold' >{`₹${Math.floor(Math.random() * 5000)}`}</h2>
+          <h2 className='text-2xl font-bold' >{`₹${data === null ? "Loading..." : data?.SavedThisMonth}`}</h2>
         </section>
       </section>
 
@@ -89,24 +111,24 @@ const Dashboard = () => {
 
         <section className='mt-8' >
           <section className='flex justify-between' >
-          <p>Saving Goal</p>
-          <span className='text-blue-500' >{SavingGoalPercent}%</span>
+          <p>Monthly Saving</p>
+          <span className='text-blue-500' >{(((User?.monthlyIncome - data?.totalSpend) / User?.monthlyIncome) * 100).toFixed(2)}%</span>
           </section>
           <div className='w-full bg-slate-200 h-4 rounded-md mt-2' >
-            <div className='bg-purple-600 h-4 rounded-md ' style={{width:`${SavingGoalPercent}%`}} ></div>
+            <div className='bg-green-600 h-4 rounded-md ' style={{width:`${(((User?.monthlyIncome - data?.totalSpend) / User?.monthlyIncome) * 100).toFixed(2)}%`}} ></div>
           </div>
-          <p className='text-xs text-slate-600 mt-1' >₹8,500 of ₹15,000</p>
+          <p className='text-xs text-slate-600 mt-1' >₹{data?.totalSpend} of ₹{User?.monthlyIncome}</p>
         </section>
 
         <section className='mt-8' >
           <section className='flex justify-between' >
           <p>Monthly Spending</p>
-          <span className='text-blue-500' >{MonthlySpendingPercent}%</span>
+          <span className='text-blue-500' >{ User?.monthlyIncome > 0 ? ((data?.totalSpend / User?.monthlyIncome) * 100).toFixed(2) : 0}%</span>
           </section>
           <div className='w-full bg-slate-200 h-4 rounded-md mt-2' >
-            <div className='bg-blue-600 h-4 rounded-md ' style={{width:`${MonthlySpendingPercent}%`}} ></div>
+            <div className='bg-blue-600 h-4 rounded-md ' style={{width:`${ User?.monthlyIncome > 0 ? ((data?.totalSpend / User?.monthlyIncome) * 100).toFixed(2) : 0}%`}} ></div>
           </div>
-          <p className='text-xs text-slate-600 mt-1' >₹8,500 of ₹15,000</p>
+          <p className='text-xs text-slate-600 mt-1' >₹{data?.totalSpend} of ₹{User?.monthlyIncome}</p>
         </section>
 
       </section>
