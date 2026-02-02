@@ -1,41 +1,46 @@
-import { BrowserRouter, Route, Routes } from 'react-router-dom'
-import './App.css'
-import Dashboard from './pages/Dashboard.jsx'
-import Login from './pages/Login.jsx'
-import Signup from './pages/Signup.jsx'
-import Setting from './pages/Setting.jsx'
-import Analysis from './pages/Analysis.jsx'
-import FinPocketDashboard from './pages/FinPocketDashboard.jsx'
-import DashboardLayout from './Layout/DashboardLayout.jsx'
-  import History from './pages/History'
-import AuthLayout from './Layout/AuthLayout.jsx'
+import { lazy, Suspense } from 'react';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import './App.css';
+import  Loader  from './components/Loader.jsx';
+
+
+
+// Lazy load all pages
+const Dashboard = lazy(() => import('./pages/Dashboard.jsx'));
+const Login = lazy(() => import('./pages/Login.jsx'));
+const Signup = lazy(() => import('./pages/Signup.jsx'));
+const Setting = lazy(() => import('./pages/Setting.jsx'));
+const Analysis = lazy(() => import('./pages/Analysis.jsx'));
+const FinPocketDashboard = lazy(() => import('./pages/FinPocketDashboard.jsx'));
+const History = lazy(() => import('./pages/History'));
+
+// Layouts - keep these eager or lazy load them too
+const DashboardLayout = lazy(() => import('./Layout/DashboardLayout.jsx'));
+const AuthLayout = lazy(() => import('./Layout/AuthLayout.jsx'));
 
 function App() {
   return (
-    <>
     <BrowserRouter>
-      <Routes>
-        <Route path='/' element={ <AuthLayout><DashboardLayout/> </AuthLayout> }>
-        <Route index element={ <Dashboard/> } />
-        <Route path='history' element={<History/>} />
-        <Route path='setting' element={<Setting/>} />
-        <Route path='analysis' element={<Analysis/> } />
-        </Route>
-        <Route path='/findash' element={<FinPocketDashboard/>} />
-        <Route path='/signup' element={<Signup/>} />
-        <Route path='/login' element={<Login/>} />
-
-      </Routes>
+      <Suspense fallback={ <div className="h-screen w-screen flex justify-center items-center"><Loader /> </div>}>
+        <Routes>
+          <Route path='/' element={
+            <AuthLayout>
+              <DashboardLayout />
+            </AuthLayout>
+          }>
+            <Route index element={<Dashboard />} />
+            <Route path='history' element={<History />} />
+            <Route path='setting' element={<Setting />} />
+            <Route path='analysis' element={<Analysis />} />
+          </Route>
+          
+          <Route path='/findash' element={<FinPocketDashboard />} />
+          <Route path='/signup' element={<Signup />} />
+          <Route path='/login' element={<Login />} />
+        </Routes>
+      </Suspense>
     </BrowserRouter>
-    </>
-  )
+  );
 }
 
-
-export default App
-
-
-
-
-// personal-finance-project - project name
-// r0Dw4lZUM4hEMBV7  - database password
+export default App;

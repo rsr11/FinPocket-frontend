@@ -38,6 +38,10 @@ const DashboardLayout = () => {
 
     // bg-purple-500 text-white
 
+
+    
+
+
   return (
     <div>
        <Header/>

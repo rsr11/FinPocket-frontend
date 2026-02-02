@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { memo } from 'react'
 // import { FaRegUserCircle } from "react-icons/fa";
 import { FaRegUser } from 'react-icons/fa6';
 import { IoMdNotifications } from 'react-icons/io';
@@ -60,7 +60,7 @@ const Header = () => {
   )
 }
 
-export default Header
+export default memo(Header)
 
 {/* {
   userLogined && currentLink !== "login" && currentLink !== "signup" ? (

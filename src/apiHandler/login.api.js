@@ -1,4 +1,5 @@
-import axios from "axios";
+// import axios from "axios";
+import { useEffect, useState } from "react";
 import api from "../config/axios.config";
 
 export const LoginApi = async (email,password)=>{
@@ -32,3 +33,5 @@ export const LoginApi = async (email,password)=>{
      
 
 }
+
+
