@@ -23,6 +23,8 @@ const AuthLayout = ({ children }) => {
   const {data, isLoading, isError } = useQuery({queryKey:['getUser'], queryFn:getUser, retry:1, staleTime:5*60*1000, refetchOnWindowFocus:false});
 
  console.log(data);
+ console.log(isError);
+ 
  
 
   const dispatch = useDispatch();
@@ -50,7 +52,7 @@ const AuthLayout = ({ children }) => {
             monthlyIncome: data.user.MonthlyIncome
           }));
 
-  return <main>{ data ? children : <Navigate to={'/login'} replace /> }</main>;
+  return <main>{ data !== undefined ? children : <Navigate to={'/login'} replace /> }</main>;
 };
 
 export default AuthLayout;
