@@ -1,13 +1,12 @@
 // import React, { useEffect, useState } from 'react';
 import { Navigate, useLocation } from 'react-router-dom';
 import Loader from '../components/Loader';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { UpdateLoggedIn } from '../features/Auth/Auth.slice';
 import api from '../config/axios.config';
 import { useQuery } from '@tanstack/react-query';
 
 const AuthLayout = ({ children }) => {
-  // const [loading, setLoading] = useState(true);
 
   const getUser = async ()=>{
     try {
@@ -21,65 +20,14 @@ const AuthLayout = ({ children }) => {
       return }
   };
 
-  const {data, isLoading, isError } = useQuery({queryKey:['getUser'], queryFn:getUser, retry:2});
+  const {data, isLoading, isError } = useQuery({queryKey:['getUser'], queryFn:getUser, retry:1, staleTime:5*60*1000, refetchOnWindowFocus:false});
 
 
 
-  // const [authChecked, setAuthChecked] = useState(false);
   const dispatch = useDispatch();
   const location = useLocation();
-  // const isLoggedIn = useSelector(selectIsLoggedIn);
 
-  // useEffect(() => {
-  //   let isMounted = true;
-
-  //   const checkAuth = async () => {
-  //     // Check if we have cached auth state first
-  //     const cachedAuth = sessionStorage.getItem('authChecked');
-      
-  //     if (cachedAuth === 'true' && isLoggedIn) {
-  //       setLoading(false);
-  //       setAuthChecked(true);
-  //       return;
-  //     }
-
-  //     try {
-  //       const res = await api.get('/finPocket/api/auth/profile', {
-  //         withCredentials: true,
-  //       });
-
-  //       if (isMounted && res.status === 200) {
-  //         dispatch(UpdateLoggedIn({
-  //           isLoggedIn: true,
-  //           name: res.data.user.name,
-  //           email: res.data.user.email,
-  //           profession: res.data.user.Profession,
-  //           monthlyIncome: res.data.user.MonthlyIncome
-  //         }));
-          
-  //         sessionStorage.setItem('authChecked', 'true');
-  //         setAuthChecked(true);
-  //       }
-  //     } catch (error) {
-  //       if (isMounted) {
-  //         dispatch(UpdateLoggedIn({ isLoggedIn: false }));
-  //         setAuthChecked(false);
-  //         sessionStorage.removeItem('authChecked');
-  //         console.error('Auth check failed:', error);
-  //       }
-  //     } finally {
-  //       if (isMounted) {
-  //         setLoading(false);
-  //       }
-  //     }
-  //   };
-
-  //   checkAuth();
-
-  //   return () => {
-  //     isMounted = false;
-  //   };
-  // }, [dispatch]);
+ 
 
   if (isLoading) {
     return (
@@ -101,7 +49,7 @@ const AuthLayout = ({ children }) => {
             monthlyIncome: data.user.MonthlyIncome
           }));
 
-  return <main>{children}</main>;
+  return <main>{ data ? children : <Navigate to={'/login'} replace /> }</main>;
 };
 
 export default AuthLayout;
