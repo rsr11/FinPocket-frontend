@@ -22,7 +22,8 @@ const AuthLayout = ({ children }) => {
 
   const {data, isLoading, isError } = useQuery({queryKey:['getUser'], queryFn:getUser, retry:1, staleTime:5*60*1000, refetchOnWindowFocus:false});
 
-
+ console.log(data);
+ 
 
   const dispatch = useDispatch();
   const location = useLocation();
