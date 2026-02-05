@@ -45,7 +45,8 @@ const Header = () => {
               <IoMdNotifications size={28} />
               <section className='flex bg-slate-200 px-2 py-1 rounded-md items-center gap-2' >
                 <span className='bg-purple-700 p-2 rounded-md' >
-                  <FaRegUser size={15} color='white'  />
+                  {User?.avatar?.length > 0 ? <img src={User?.avatar} alt="Avatar" className="size-8 rounded-md object-cover" /> :
+                  <FaRegUser size={15} color='white'  /> }
                 </span>
                 <section className='hidden sm:block' >
                   <h3 className='font-semi-bold' >{User.name}</h3>

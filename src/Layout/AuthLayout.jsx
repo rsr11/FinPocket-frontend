@@ -20,16 +20,15 @@ const AuthLayout = ({ children }) => {
       return }
   };
 
-  const {data, isLoading, isError } = useQuery({queryKey:['getUser'], queryFn:getUser, retry:1, staleTime:5*60*1000, refetchOnWindowFocus:false});
+  const {data, isLoading, isError } = useQuery({queryKey:['getUser'], queryFn:getUser, retry:2});
 
- console.log(data);
- console.log(isError);
- 
- 
+
 
   const dispatch = useDispatch();
   const location = useLocation();
 
+  console.log(data+" "+ isLoading +" "+ isError);
+  
  
 
   if (isLoading) {
@@ -40,7 +39,7 @@ const AuthLayout = ({ children }) => {
     );
   }
 
-  if (!data || isError) {
+  if (data === undefined || isError) {
     return <Navigate to="/login" state={{ from: location }} replace />;
   }
 
@@ -52,7 +51,7 @@ const AuthLayout = ({ children }) => {
             monthlyIncome: data.user.MonthlyIncome
           }));
 
-  return <main>{ data !== undefined ? children : <Navigate to={'/login'} replace /> }</main>;
+  return <main>{children}</main>;
 };
 
 export default AuthLayout;

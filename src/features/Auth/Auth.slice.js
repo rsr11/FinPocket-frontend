@@ -9,6 +9,7 @@ const initialState = {
         isLoggedIn : false,
         profession : "",
         monthlyIncome:0,
+        avatar : ""
 
     }
 }
@@ -24,13 +25,19 @@ const initialState = {
              state.User.name = action.payload.name;
              state.User.profession = action.payload.profession;
              state.User.monthlyIncome = action.payload.monthlyIncome;
+            //  state.User.avatar = action.payload.avatar;
         
-                }
+                },
+       UpdateAvator: (state, action) => {
+        console.log(action.payload);
+        
+        state.User.avatar = action.payload;
 
-     }
+       },
+    }
 });
 
-export const {UpdateLoggedIn} = AuthSlice.actions
+export const {UpdateLoggedIn,UpdateAvator} = AuthSlice.actions
 
 export default AuthSlice.reducer
 

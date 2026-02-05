@@ -85,6 +85,8 @@ const Signup = () => {
                       return;
                     }
                     // toast("done");
+                    console.log(loading);
+                    
 
 
                     try {
@@ -118,6 +120,7 @@ const Signup = () => {
   
                       console.log(error);
                       toast.error(error?.response?.data?.msg || "something went wrong!");
+                      setLoading(false);
                     
                  // alert( error?.response?.data?.msg || "something went wrong!"  );
                       
